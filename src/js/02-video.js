@@ -4,9 +4,10 @@ import throttle from 'lodash.throttle';
 const iframeEl = document.querySelector('#vimeo-player');
 const player = new Player(iframeEl);
 
-player.setCurrentTime(
-  JSON.parse(localStorage.getItem('videoplayer-current-time'))
-);
+let currentTime = localStorage.getItem('videoplayer-current-time');
+if (currentTime) {
+  player.setCurrentTime(JSON.parse(currentTime));
+}
 
 player.on(
   'timeupdate',
